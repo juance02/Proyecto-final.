@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+
+<link rel="stylesheet" href="{% static 'listar.css' %}">
+<br>
+<br>
+<br>
+<div class="card">
+    <divcard class="card-body">
+        <h2>Listado de Productos</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>descripcion</th>
+                <th>imagenes</th>
+                <th>Opciones</th>
+                <th>Eliminar</th>
+        
+            </tr>
+            {% for post in productos %}
+                <tr>
+                    <td>{{ post.nombre | title }}</td>
+                    <td>${{ post.precio | intcomma }}</td>
+                    <td>{{ post.descripcion | title }}</td>
+                    <td><img src="{{ post.image.url }}" height="60px" width="60px" alt=""></td>
+                   
+                    <td>
+                        
+
+                        <button type="submit" id="submit"><a href="{% url 'modificar_producto' post.pk %}"class="btn btn-info btn-sm">modificar</a></button>
+                    </td>
+                    <td>
+                        
+                        <button onclick="return eliminar();" type="submit"><a href="{% url 'eliminar_producto' post.pk %}"class="btn btn-danger btn-sm">Eliminar</a></button>
+                        
+                    </td>
+        
+                </tr>
+                {% endfor %}
+        
+        
+        </table>
+    </divcard>
+</div>
+
+
+{% endblock %}

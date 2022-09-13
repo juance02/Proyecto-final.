@@ -1,0 +1,41 @@
+.profile{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.profile img{
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin: 20px;
+}
+.profile h2{
+	margin-top: -10px;
+	font-size: 1.3rem;
+}
+
+.follow{
+	display: flex;
+	width: 95%;
+	justify-content: space-around;
+	margin: 30px auto;
+	text-align: center;
+	border-bottom: 2px solid #ECEEEF;
+	padding-bottom: 20px;
+}
+
+
+.ele{
+	padding: 40px;
+	text-align: center;
+
+}
+.ele h2{
+	text-align: center;
+}
+
+.ftco-footer {
+	margin-top: 100px;
+}

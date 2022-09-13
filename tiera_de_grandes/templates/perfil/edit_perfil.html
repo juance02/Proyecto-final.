@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<header class="card-header" >
+  
+    <strong class="d-inline-block mr-3"> Editar Perfil de Usuario </strong>
+</header>
+
+<div class="card-body" >
+    <div class="text-right">
+        <img src="{{userperfil.image_perfil.url}}" alt="Imagen de Perfil" height="100" width="100" style="border-radius: 50% ;" >
+    </div>
+</div>
+{% include 'includes/alerts.html' %}
+
+<div class="col-md-12" >
+    <form action="{% url 'edit_perfil' %}" method="POST" enctype="multipart/form-data" >
+      {% csrf_token %}
+
+      <div class="form-row" >
+        <div class="form-group col-md-6">
+          <label for="">Nombre</label>
+          {{ user_form.nombres }}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">Apellidos</label>
+          {{ user_form.apellidos }}
+        </div>
+      </div>
+  
+      <div class="form-row" >
+        <div class="form-group col-md-6">
+          <label for="">Telefono</label>
+          {{ user_form.numero_telefono }}
+        </div>
+        
+        <div class="form-group col-md-6">
+          <label for="">Imagen de Perfil</label>
+          {{ perfil_form.image_perfil }}
+        </div>
+      </div>
+  
+  
+      <div class="form-row" >
+        <div class="form-group col-md-6">
+          <label for="">Detalle de direcion</label>
+          {{ perfil_form.direccion_linea_1 }}
+        </div>
+        
+        <div class="form-group col-md-6">
+          <label for="">Otra direcion</label>
+          {{ perfil_form.direccion_linea_2 }}
+        </div>
+      </div>
+  
+      <div class="form-row" >
+        <div class="form-group col-md-4">
+          <label for="">Ciudad </label>
+          {{ perfil_form.ciudad }}
+        </div>
+        
+        <div class="form-group col-md-4">
+          <label for="">Departamento</label>
+          {{ perfil_form.departamento }}
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="form-group col-md-4">
+          <label for="">Descripcion</label>
+          {{ perfil_form.descripcion }}
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" > Guardar</button>
+    </form>
+  </div>
+{% endblock %}

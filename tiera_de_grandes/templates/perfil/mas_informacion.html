@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load humanize %}
+
+
+<br>
+<br>
+<br>
+<div class="card">
+    <divcard class="card-body">
+        <h2>Informacion del Productor  {{user.full_nombre | capfirst }}</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Otra Direccion</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                
+        
+            </tr>
+            {% for users in user_form %}
+                <tr>
+                    <td>{{ users.nombres | title }}</td>
+                    <td>{{ users.apellidos | title }}</td>
+                    <td>{{ users.numero_telefono | title }}</td>
+                          
+                
+            {% endfor %}
+            {% for perfils in perfil_form %}
+                
+                    <td>{{ perfils.direccion_linea_1 | title }}</td>
+                    <td>{{ perfils.direccion_linea_2 | title }}</td>
+                    <td>{{ perfils.departamento | title }}</td>
+                    <td>{{ perfils.ciudad | title }}</td>
+                    
+                    
+            {% endfor %}
+                          
+                </tr>
+                
+        
+        
+        </table>
+    </divcard>
+</div>
+
+
+{% endblock %}

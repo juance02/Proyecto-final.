@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load humanize %}
+
+
+<article>
+	<div class="row">
+        {% for producto in producto %} 
+        <div class="col-md-6 col-lg-3 ftco-animate">
+            <div class="product">
+                <a href="{% url 'verproducto_usuario' producto.pk %}" class="img-prod"><img class="img-fluid" src="{{producto.image.url}}" alt="Colorlib Template">
+                    <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3 text-center">
+                    <h3><a href="#">{{producto.nombre}}</a></h3>
+                    <div class="d-flex">
+                        <div class="pricing">
+                         <time data-time="#">{{ producto.timestamp| naturaltime }}</time>
+                        <p class="price"><span class="price-sale">${{producto.precio| intcomma}}</span></p>
+                        
+                        
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+  </div>
+ 
+            {% endfor %}
+        </div>   
+
+    
+</div>	  
+</article>
+
+
+
+
+{% endblock %}

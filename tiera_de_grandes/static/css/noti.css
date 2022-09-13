@@ -1,0 +1,16 @@
+.notification {
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  .success {
+    background: #43DC7E;
+    color: white;
+  }
+  .error {
+    background: #AB3444;
+    color: white;
+    margin-bottom: 20px;
+  }

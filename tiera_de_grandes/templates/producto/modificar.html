@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+ <br><br>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <h2>Editar Producto</h2>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data">
+                    
+                        {% csrf_token %}
+                        {{ p_form | crispy }}
+                        {{ form | crispy }}
+                        <div class="d-felx justify-content-end">
+                            <button type="submit" id="submit"><a href="{% url 'tablero' %}"class="btn btn-info btn-sm">Cancelar</a></button>
+                         &nbsp;
+                        <input type="submit" value="Editar" class="btn btn-primary">
+                    </div>
+                </form>
+                {{mensaje}}
+            </div>
+        </div>
+    </div>
+</div>   
+
+    
+</body>
+</html>
+
+{% endblock %}

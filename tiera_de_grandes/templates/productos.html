@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load humanize %}
+
+
+<article>
+    <div class="row">
+        {% for producto in product %}
+        <div class="col-md-4 col-lg-4 ftco-animate">
+            <div class="row">
+                <div class="col-lg-10 mb-2 pr-lg-10"><a href="{{ producto.get_url }}" class="img-prod"><img src="{{producto.image.url}}" width="280px" height="50px" alt=""
+                        class="img-fluid rounded shadow-sm"></a></div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    </div>
+    
+
+
+</article>
+
+{% endblock %}

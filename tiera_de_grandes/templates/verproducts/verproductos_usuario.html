@@ -1,0 +1,277 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{%load static %}
+{% load humanize %}
+<html lang="en">
+
+{% block content %}
+
+<body class="goto-here">
+
+
+	<!-- END nav -->
+	<section class="ftco-section">
+		
+			<div class="container">
+				<div class="row">
+                    {% for producto in verproducto %}
+					<div class="col-lg-6 mb-5 ftco-animate">
+						<a href="{{ producto.image.url}}" class="image-popup"><img
+								src="{{ producto.image.url }}" class="img-fluid1" alt="Colorlib Template"></a>
+					</div>
+					
+					
+					<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+						<h3>{{ producto.nombre }}</h3>
+					
+						<time data-time="#">{{ producto.timestamp| naturaltime }}</time>
+						<p class="price"><span>${{ producto.precio| intcomma }}</span></p>
+						<h4>informacion de produccion</h4>
+						<p style="color: #4af35b;">{{ producto.Informacion_de_produccion }}</p>
+						<p>{{ producto.descripcion }}
+
+                            <p><a href="{% url 'modificar_producto' producto.pk %}" class="btn btn-black py-3 px-5">Modifica</a></p>
+                            <p>
+							<a href="{{ producto.activo }}" class="btn btn-danger btn-sm">Eliminar</a></p>
+						
+						
+				
+				</div>
+                {% endfor %}
+			</div>
+		
+	</section>
+
+
+
+
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center mb-3 pb-3">
+				<div class="col-md-12 heading-section text-center ftco-animate">
+					<h2 class="mb-4">Productos Relacionados</h2>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg"
+								alt="Colorlib Template">
+							<span class="status">30%</span>
+							<div class="overlay"></div>
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3><a href="#">Bell Pepper</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price"><span class="mr-2 price-dc">$120.00</span><span
+											class="price-sale">$80.00</span></p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a>
+									<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a>
+									<a href="#" class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg"
+								alt="Colorlib Template">
+							<div class="overlay"></div>
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3><a href="#">Strawberry</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price"><span>$120.00</span></p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a>
+									<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a>
+									<a href="#" class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg"
+								alt="Colorlib Template">
+							<div class="overlay"></div>
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3><a href="#">Green Beans</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price"><span>$120.00</span></p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a>
+									<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a>
+									<a href="#" class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg"
+								alt="Colorlib Template">
+							<div class="overlay"></div>
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3><a href="#">Purple Cabbage</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price"><span>$120.00</span></p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a>
+									<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a>
+									<a href="#" class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+		<div class="container py-4">
+			<div class="row d-flex justify-content-center py-5">
+				<div class="col-md-6">
+					<h2 style="font-size: 22px;" class="mb-0">Calificacion de los Prductos</h2>
+					<span>Envianos un email, para nosotros poder conocer tus preferencias y opiniones.</span>
+				</div>
+				<div class="col-md-6 d-flex align-items-center">
+					<form action="" method="post">
+						{% csrf_token %}
+						<h5>Escribe tu Comentario</h5>
+
+						<div class="form-group d-flex">
+							<label for="" Como Calificarias este Producto></label>
+						</div>
+						<div class="rate">
+
+							<input type="radio" name="calificacion" value="5" id="calificacion10"><label
+								for="calificacion10" title="5"></label>
+							<input type="radio" name="calificacion" value="4.5" id="calificacion9"><label
+								for="calificacion9" title="4.5" class="half"></label>
+							<input type="radio" name="calificacion" value="4" id="calificacion8"><label
+								for="calificacion8" title="4"></label>
+							<input type="radio" name="calificacion" value="3.5" id="calificacion7"><label
+								for="calificacion7" title="3.5" class="half"></label>
+							<input type="radio" name="calificacion" value="3" id="calificacion6"><label
+								for="calificacion6" title="3"></label>
+							<input type="radio" name="calificacion" value="2.5" id="calificacion5"><label
+								for="calificacion5" title="2.5" class="half"></label>
+							<input type="radio" name="calificacion" value="2" id="calificacion4"><label
+								for="calificacion4" title="2"></label>
+							<input type="radio" name="calificacion" value="1.5" id="calificacion3"><label
+								for="calificacion3" title="1.5" class="half"></label>
+							<input type="radio" name="calificacion" value="1" id="calificacion2"><label
+								for="calificacion2" title="1"></label>
+							<input type="radio" name="calificacion" value="0.5" id="calificacion1"><label
+								for="calificacion1" title="0.5" class="half"></label>
+
+
+						</div>
+
+
+						Titulo de Comentario:
+						<input type="text" class="form-control" name="tema" value="">
+						<br>
+
+						Comentario:
+						<textarea name="comentario" rows="4" class="form-control"></textarea>
+						<br>
+						<input type="submit" name="" value="Enviar comentario" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{% endblock %}
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" /></svg></div>
+
+	
+
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.easing.1.3.js' %} "></script>
+	<script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+	<script src="{% static 'js/jquery.stellar.min.js' %} "></script>
+	<script src="{% static 'js/owl.carousel.min.js' %} "></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %} "></script>
+	<script src="{% static 'js/aos.js' %} "></script>
+	<script src="{% static 'js/jquery.animateNumber.min.js' %}  "></script>
+	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'js/scrollax.min.js' %}"></script>
+	<script
+		src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}">
+	</script>
+	<script src="{% static 'js/google-map.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

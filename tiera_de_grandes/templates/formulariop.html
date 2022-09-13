@@ -1,0 +1,42 @@
+
+
+{% block content %}
+   <div class="row" >
+
+      <div class="form-control">
+         <form action="" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+
+            <label >nombre </label>
+            {{form.nombre}}
+            <label >telefono </label>
+            {{form.telefono}}
+            <label >correo</label>
+            {{form.correo}}
+            <label>imaggen </label>
+            {{form.image}}
+
+           <!-- <input type="text" name="nombre" class="form-control" >
+            <input type="text" name="telefono" class="form-control" >
+            <input type="text" name="correo" class="form-control" >
+            <input type="file" name="image" class="form-control" >-->
+
+            <input type="submit" class="btn btn-primary" >
+
+         </form>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+      </div>
+
+
+   </div>
+
+{% endblock  %}

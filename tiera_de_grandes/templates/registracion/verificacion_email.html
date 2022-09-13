@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hola {{ user.nombres }},
+
+por favor activa tu cuenta dandole click al siguinte link:
+
+http://{{domain}}{% url 'activate' uidb64=uid token=token  %}
+
+Saludos de Tierra de Grandes
+
+{% endautoescape %}

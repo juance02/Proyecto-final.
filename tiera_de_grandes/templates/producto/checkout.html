@@ -1,0 +1,167 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+{% load crispy_forms_tags %}
+{# Cargamos la librería #}
+{% load bootstrap4 %}
+
+
+{# Widget Tweaks #}
+{% load widget_tweaks %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 ftco-animate">
+                <form action="{% url 'ordenar' %}" method="post" class="billing-form">
+                    {% csrf_token %}
+                    <h3 class="mb-4 billing-heading">Direccion de Facturacion</h3>
+                    <div class="row align-items-end">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstname">Nombres</label>
+                                
+                                <input type="text" name="nombres" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastname">Apellidos</label>
+                                <input type="text" name="apellidos" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="streetaddress">Direccion</label>
+                                <input type="text" name="direccion_linea_1" class="form-control"
+                                    placeholder="House number and street name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="towncity">Detalles de Direccion</label>
+                                <input type="text" class="form-control" name="direccion_linea_2"
+                                    placeholder="Departamento, Barrio, Vereda etc: (opcional)" required>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="towncity">Departamento</label>
+                                <input type="text" name="departamento" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="postcodezip">Ciudad *</label>
+                                <input type="text" name="ciudad" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Telofono</label>
+                                <input type="text" name="numero_telefono" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emailaddress">Correo</label>
+                                <input type="email" name="email" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emailaddress">Descripcion </label>
+                                <textarea class="form-control" name="orden_descripcion" rows="3" ></textarea>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    
+                        </div>
+
+                        </div>
+                        <div class="col-xl-5">
+                            <div class="row mt-5 pt-3">
+                                <div class="col-md-12 d-flex mb-5">
+                                    <table class="table">
+                                        <thead class="thead-primary">
+                                            <tr class="text-center">
+                                                <th>&nbsp;</th>
+                                                <th>&nbsp;</th>
+                                                <th>Nombre Del Producto</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                {% for carrito_item in carrito_items %}
+                                <tr class="text-center">
+
+                                    <td class="image-prod">
+                                        <div class="img"
+                                            style="background-image:url({{carrito_item.productos.image.url}});"></div>
+                                    </td>
+
+                                    <td class="product-name">
+                                        <h3><a
+                                                href="{{ carrito_item.productos.get_url }}">{{carrito_item.productos.nombre}}</a>
+                                        </h3>
+                                        <p class="text.muted small">
+                                            {% if carrito_item.kardex.all %}
+                                            {% for item in carrito_item.kardexob.all %}
+                                            {{ item.kardex_categoria }} : {{ item.kardex_value }}
+                                            {% endfor %}
+                                            {% endif %}
+
+                                        </p>
+                                    </td>
+
+                                    <td class="price">${{carrito_item.productos.precio | intcomma}} Por Kg </td>
+
+                                    <td class="quantity">
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" name="quantity"
+                                                class="quantity form-control input-number"
+                                                value="{{ carrito_item.cantidad }}" min="1" max="100">
+
+                                            </input>
+                                        </div>
+                                    </td>
+
+                                    <td class="total">${{carrito_item.sub_total | intcomma }}</td>
+                                </tr><!-- END TR-->
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary py-3 ">Pagar</button>
+                        <p><a href="{% url 'verproducto' %}" class="btn btn-primary py-3 px-4">Continua Comprando</a></p>
+                    </form>
+                </div>
+            </div> <!-- .col-md-8 -->
+        </div>
+    </div>
+</section> <!-- .section -->
+
+
+
+
+
+
+<!-- loader -->
+
+
+
+
+</body>
+
+</html>
+
+{% endblock %}

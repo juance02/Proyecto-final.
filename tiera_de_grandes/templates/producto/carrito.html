@@ -1,0 +1,168 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<body class="goto-here">
+
+	<!-- END nav -->
+
+	<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'inicio' %}">Home</a></span>
+						<span>Cart</span></p>
+					<h1 class="mb-0 bread">Mi Carrto</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			{% if not carrito_items %}
+			<h2 class="text-center">No hay Productos en el Carrito de Orden</h2>
+			<br>
+			<br>
+			<div class="text-center">
+				<a href="{% url 'verproducto' %}" class="btn btn-primary"> Continua Comprando</a>
+			</div>
+			{% else %}
+			<div class="row">
+
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr class="text-center">
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+									<th>Nombre Del Producto</th>
+									<th>Precio</th>
+									<th>Cantidad</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for carrito_item in carrito_items %}
+								<tr class="text-center">
+									<td class="product-remove"><a
+											href="{% url 'eliminar_carrito_item' carrito_item.productos.pk carrito_item.id%}"><span
+												class="ion-ios-close"></span></a></td>
+
+									<td class="image-prod">
+										<div class="img"
+											style="background-image:url({{carrito_item.productos.image.url}});"></div>
+									</td>
+
+									<td class="product-name">
+										<h3><a href="{{ carrito_item.productos.get_url }}">{{carrito_item.productos.nombre}}</a></h3>
+										<p class="text.muted small"> 
+											{% if carrito_item.kardex.all %}
+												{% for item in carrito_item.kardexob.all %}
+													{{ item.kardex_categoria }} : {{ item.kardex_value }}
+												{% endfor %}
+											{% endif %}
+											
+										</p>
+									</td>
+
+									<td class="price">${{carrito_item.productos.precio | intcomma}} Por Kg </td>
+
+									<td class="quantity">
+										<div class="input-group mb-3">
+										<a href="{% url 'remove_carrito' carrito_item.productos.id carrito_item.id %}" class="btn btn-light" type="button" id="button-plus" > <i class="fa fa-minus"></i></a>
+											<input type="text" name="quantity"
+												class="quantity form-control input-number"
+												value="{{ carrito_item.cantidad }}" min="1" max="100">
+										<form action="{% url 'add_carrito' carrito_item.productos.pk  %}" method="post">
+										{% csrf_token %}
+										{% for item in  carrito_item.kardexob.all%}
+											<input type="hidden" name="{{ item.kardex_categoria |lower }}" value="{{ item.kardex_value | capfirst }}" >
+										{% endfor %}
+											<button class="btn btn-light" type="submit" id="button-minus" > <i class="fa fa-plus"></i></button>
+										</form>
+
+										</div>
+									</td>
+
+									<td class="total">${{carrito_item.sub_total | intcomma }}</td>
+								</tr><!-- END TR-->
+
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				{% endif %}
+			</div>	
+				<center><div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+					<div class="cart-total mb-3">
+						<h3>Carrito Total</h3>
+						<p class="d-flex">
+							<span>Subtotal</span>
+							<span>${{total | intcomma}}</span>
+						</p>
+					
+						<p class="d-flex">
+							<span>Inpuesto</span>
+							<span>${{inpuesto | intcomma}}</span>
+						</p>
+						<hr>
+						<p class="d-flex total-price">
+							<span>Total</span>
+							<span>${{total_final | intcomma}}</span>
+						</p>
+					</div>
+					<p><a href="{% url 'checkout' %}" class="btn btn-primary py-3 px-4">Pagar</a></p>
+					<p><a href="{% url 'verproducto' %}" class="btn btn-primary py-3 px-4">Continua Comprando</a></p>
+				</div></center>
+			</div>
+		</div>
+	</section>
+
+	
+	
+
+	<!-- loader -->
+
+	<script>
+		$(document).ready(function () {
+
+			var quantitiy = 0;
+			$('.quantity-right-plus').click(function (e) {
+
+				// Stop acting like a button
+				e.preventDefault();
+				// Get the field name
+				var quantity = parseInt($('#quantity').val());
+
+				// If is not undefined
+
+				$('#quantity').val(quantity + 1);
+
+
+				// Increment
+
+			});
+
+			$('.quantity-left-minus').click(function (e) {
+				// Stop acting like a button
+				e.preventDefault();
+				// Get the field name
+				var quantity = parseInt($('#quantity').val());
+
+				// If is not undefined
+
+				// Increment
+				if (quantity > 0) {
+					$('#quantity').val(quantity - 1);
+				}
+			});
+
+		});
+	</script>
+
+</body>
+{% endblock %}

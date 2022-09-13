@@ -1,0 +1,60 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo_principal %}
+    Contacto
+{% endblock titulo_principal %}    
+{% block content %}
+  
+
+    <section class="ftco-section contact-section bg-light">
+      <div class="container">
+      	<div class="row d-flex mb-5 contact-info">
+          <div class="w-100"></div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+	          </div>
+          </div>
+          <section>
+            <div>   
+                <h3>Contacto</h3>
+              <div class="container">
+                <form action="/contactar/" method="POST">{% csrf_token %}
+                   <p>Asunto</p>
+                   <input class="form-control" type="text" name="txtAsunto">
+  
+                   <p>Email</p>
+                   <input class="form-control" type="email" name="txtEmail">
+  
+                   <textarea class="form-control" name="textmsg" id="text" cols="40" rows="10"  placeholder="Escribe tu email aqui" ></textarea>
+                   <input class="btn btn-light" type="submit" value="Enviar">
+  
+  
+  
+                </form>
+              </div>
+            </div>
+        </section>
+       
+        </div>
+      </div>
+    </section>
+
+   
+{% endblock %}

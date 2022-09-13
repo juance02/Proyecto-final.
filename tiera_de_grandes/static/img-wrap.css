@@ -1,0 +1,9 @@
+.img-wrap{
+    border-radius: 0.2rem 0.2rem 0 0;
+    height: 212px;
+  }
+
+.img-wrap img {
+    height: 100%;
+    width: 100%;
+}

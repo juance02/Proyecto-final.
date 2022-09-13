@@ -1,0 +1,16 @@
+<aside class="col-md-3">
+   <!--   SIDEBAR   -->
+   <ul class="list-group">
+       
+       <a class="list-group-item {% if '/mis_ordenes/' in request.path %} active {% endif %}  " href="{% url 'mis_ordenes' %}"> Mis Ordenes </a>
+       <a class="list-group-item" href="{% url 'perfil' %}"> Perfil</a>
+       <a class="list-group-item" href="{% url 'edit_perfil' %}"> Editar Perfil</a>
+       <a class="list-group-item" href="{% url 'agregar_producto' %}"> Agregar Productos</a>
+       <a class="list-group-item" href="{% url 'mis_productos' %}"> Ver tus Productos </a>
+       <a class="list-group-item" href="#">Cambiar Contraseña</a>
+       
+   </ul>
+   <br>
+   <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Salir de sesion</span> </a> 
+   <!--   SIDEBAR .//END   -->
+</aside>
