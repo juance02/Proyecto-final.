@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -109,8 +109,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tdg',
         'USER': 'root',
-        'PASSWORD' : 'Admin1234*',
-        'PORT' : '3308',
+        'PASSWORD' : '',
+        'PORT' : '3306',
         'HOST': '127.0.0.1'
     }
 }
