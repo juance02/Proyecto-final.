@@ -107,7 +107,7 @@
             <li class="nav-item cta cta-colored"><a href="{% url 'carrito' %}" class="nav-link"><span class="icon-shopping_cart"></span>{{carrito_count}}</a></li>
             
             <div class="widget-header" >
-              <a  href="{% url 'perfil' %}"><img src="{{user.userperfil.image_perfil.url}}" height="60px" width="60px" style="border-radius: 50% ;" ></a>
+              <a  href="{% url 'perfil' %}"><img src="{{ user.userperfil.image_perfil.url}}" height="60px" width="60px" style="border-radius: 50% ;" ></a>
             </div>
             
             {% else %}

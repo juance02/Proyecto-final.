@@ -28,7 +28,7 @@
 						<h4>informacion de produccion</h4>
 						<p style="color: #4af35b;">{{single_producto.Informacion_de_produccion}}</p>
 						<p>{{ single_producto.descripcion }}
-							<h2 class="username"><a href="{% url 'perfil' single_producto.user.nombres %}">{{ single_producto.user.nombres }}</a></h2>
+							<h2 class="username"><a href="{% url 'perfil' single_producto.user.nombreusuario %}">{{ single_producto.user.nombres }}</a></h2>
 						</p>
 						<div class="row mt-4">
 							<form  method="POST"  action="{% url 'add_carrito' single_producto.pk %}" >
@@ -100,7 +100,7 @@
 	{% for coment in comentarios %}
 	<article class="box mb-3">
 		<div class="icontext w-150">
-			<img src="./images/avatars/avatar1.jpg" class="img-xs icon rounded-circle">
+			<img src="{{ coment.user.userperfil.image_perfil.url}}" height="60px" width="60px" style="border-radius: 50% ;" class="img-xs icon rounded-circle">
 			<div class="text">
 				<span class="date text-muted float-md-right">{{ coment.fecha_subido }} </span>  
 				<h6 class="mb-1">{{ coment.user.full_nombre }}</h6>

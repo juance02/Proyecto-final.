@@ -24,18 +24,17 @@
             </tr>
             {% for users in user_form %}
                 <tr>
-                    <td>{{ users.nombres | title }}</td>
-                    <td>{{ users.apellidos | title }}</td>
-                    <td>{{ users.numero_telefono | title }}</td>
+                    <td>{{ users.userperfil.user.nombres | title }}</td>
+                    <td>{{ users.userperfil.user.apellidos | title }}</td>
+                    <td>{{ users.userperfil.user.numero_telefono | title }}</td>
                           
                 
-            {% endfor %}
-            {% for perfils in perfil_form %}
+            
                 
-                    <td>{{ perfils.direccion_linea_1 | title }}</td>
-                    <td>{{ perfils.direccion_linea_2 | title }}</td>
-                    <td>{{ perfils.departamento | title }}</td>
-                    <td>{{ perfils.ciudad | title }}</td>
+                    <td>{{ users.userperfil.direccion_linea_1 | title }}</td>
+                    <td>{{ users.userperfil.direccion_linea_2 | title }}</td>
+                    <td>{{ users.userperfil.departamento | title }}</td>
+                    <td>{{ users.userperfil.ciudad | title }}</td>
                     
                     
             {% endfor %}

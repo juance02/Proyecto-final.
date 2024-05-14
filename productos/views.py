@@ -75,12 +75,14 @@ def buscador(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
+            users = Cuentas.objects.filter(Q(nombres__icontains=keyword))
             productos = Producto.objects.order_by('-fecha_creacion').filter(Q(descripcion__icontains=keyword) | Q(nombre__icontains=keyword))
             producto_count = productos.count()
 
     context = {
         'productos':productos,
         'producto_count':producto_count,
+        'users':users
     }
     return render(request, 'categorias/vercategoria.html' ,context)
 

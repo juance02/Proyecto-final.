@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from ctypes import cast
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '#nv&7=my(8drxahj9-1-_rdmvy8n)$#cdzg0ty1$-aa=unw+$4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=True)
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -108,8 +107,8 @@ DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tdg',
-        'USER': 'root',
-        'PASSWORD' : '',
+        'USER': 'juance',
+        'PASSWORD' : '123',
         'PORT' : '3306',
         'HOST': '127.0.0.1'
     }
@@ -157,12 +156,12 @@ STATICFILES_DIRS = [
 ]
 
 
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tierradegrandes2022@gmail.com'
+EMAIL_HOST_PASSWORD = 'vxubrqpbxwfukygi'
+EMAIL_USE_TLS = "true"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

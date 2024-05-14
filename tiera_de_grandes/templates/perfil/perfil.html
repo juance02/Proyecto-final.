@@ -18,11 +18,14 @@
           <div class="profile mr-3"><a  href="{{ user.userperfil.image_perfil.url }}" class="image-popup"><img
               src="{{user.userperfil.image_perfil.url}}"
               alt="..." width="130" class="rounded mb-2 img-thumbnail"></a>
-              {% if request.user.userperfil or current_user  %}
-              <a href="{% url 'mas_informacion' user.pk %}"
-              class="btn btn-outline-dark btn-sm btn-block">Contacto</a>
+              {% if request.user.is_authenticated %}
+              {% if user.nombreusuario == request.user.nombreusuario %}
+                <a href="{% url 'edit_perfil' %}"
+                 class="btn btn-outline-dark btn-sm btn-block">Edit perfil</a>
               {% else %}
-                <p>no es tu perfil </p>
+                <a href="{% url 'mas_informacion' user.nombreusuario %}"
+                class="btn btn-outline-dark btn-sm btn-block">Contacto</a>
+              {% endif %}
               {% endif %}
               
             </div>

@@ -33,6 +33,7 @@
                     <li><a href="{{ categoria.get_url }}">{{categoria.nombre}}</a></li>
                     {% endfor %}
                     
+                    
                     </ul>
     
                 </div> <!-- card-body.// -->
@@ -123,7 +124,31 @@
             </div>
     
         {% endfor %}
+
+        
     </div> <!-- row end.// -->
+    {% for post in  users %}
+        <div class="col-md-4"> 
+
+        <article>
+                <div class="container-article">  
+                    <div>
+                        <h2 class="nombres"><a href="{% url 'perfil' post.userperfil.user.nombreusuario %}"id="user"><img src="{{ post.userperfil.image_perfil.url }}" height="60px" width="60px" style="border-radius: 50% ;">{{ post.userperfil.user.nombres }}</h2></a>
+                        <i class="clock"></i>
+                        <time data-time="#">{{ post.userperfil.user.numero_telefono }}</time>
+                        <div class="post">{{ post.userperfil.descripcion }}</div>
+                    </div>
+                
+                </div>
+        </article>
+        </div>
+        {% empty %}
+
+    <div class="card w-100">
+
+        <h4>No se encontraron usuarios relacionados</h4>
+    </div>
+        {% endfor %}
     
     
     <nav class="mt-4" aria-label="Page navigation sample">

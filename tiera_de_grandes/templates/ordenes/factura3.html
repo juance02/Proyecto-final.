@@ -1,0 +1,106 @@
+{% load static %}
+{% load humanize %}
+<link rel="stylesheet" href="{% static 'factura.css' %}">
+</div><div id="app" class="col-11">
+
+    <h2>Factura</h2>
+
+    <div class="row my-3">
+      <div class="col-10">
+        <h1>Tierra de Grandes</h1>
+       
+      </div>
+      <div class="col-2">
+        <img src="{% static 'icono.png' %}" />
+      </div>
+    </div>
+  
+    <hr />
+  
+    <div class="row fact-info mt-3">
+        {% for order in factura %}
+      <div class="col-3">
+        <h5>Facturar a</h5>
+
+        <p>
+            {{ order.full_nombre }}
+        </p>
+      </div>
+      <div class="col-3">
+        <h5>Direccion</h5>
+        <p>
+            {{ order.full_direccion }},
+            {{order.ciudad}}, {{order.departamento}}
+        </p>
+      </div>
+      <div class="col-3">
+        <h5>N° de Orden :</h5>
+        <p>{{ order.orden_numero }}</p>
+        <h5>Fecha :</h5>
+        <p>{{ order.orden_creacion }}</p>
+        
+      </div>
+     
+      {% endfor %}
+      {% for pagod in ordenado %}
+      <li><strong>Transaccion </strong>{{ pagod.pagos_id.user.payment_metodo }}</li>
+    
+      <li><strong>Status:</strong> {{ pagod.status  }}</li>
+      {% endfor %}
+    </div>
+  
+    <div class="row my-5">
+      <table class="table table-borderless factura">
+        <thead>
+          <tr>
+            <th>Cant.</th>
+            <th>Descripcion</th>
+            <th>Precio Unitario</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in ordenado %}
+          <tr>
+            <td>{{ item.cantidad }}</td>
+            <td>{{item.productos.nombre}} </td>
+            <td>${{item.precio | intcomma}}</td>
+            
+          </tr>
+        
+          {% endfor %}
+        </tbody>
+        <tfoot>
+            {% for order in factura %}
+            <tr>
+                <th colspan="2" class="text-right">Sub Total:</th>
+                <th class="text-center">${{subtotal | intcomma}}</th>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-right">Inpuesto:</th>
+                <th class="text-center">${{order.inpuesto | intcomma}}</th>
+            </tr>
+            
+            <tr>
+                <th colspan="2" class="text-right">Grand Total:</th>
+                <th class="text-center">$ {{order.orden_total | intcomma }}</th>
+            </tr>
+            {% endfor %}
+        </tfoot>
+      </table>
+    </div>
+  
+    <div class="cond row">
+      <div class="col-12 mt-3">
+        <h4>Condiciones y formas de pago</h4>
+        <p>El pago se debe realizar en un plazo de 15 dias.</p>
+        <p>
+          Banco Banreserva
+          <br />
+          IBAN: DO XX 0075 XXXX XX XX XXXX XXXX
+          <br />
+          Código SWIFT: BPDODOSXXXX
+        </p>
+      </div>
+    </div>
+</div>

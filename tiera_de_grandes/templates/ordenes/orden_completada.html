@@ -79,8 +79,11 @@
                                                 <td class="text-center">{{ item.cantidad }}</td>
                                                 <td class="text-center">${{item.precio}}</td>
                                             </tr>
-                                            <a href="{% url 'PDF' item.pk %}" class="btn btn-success">Descarga tu Factura</a>
+                                            
                                             {% endfor %}
+                                            <a href="{% url 'pdf3' orden_numero %}" class="btn btn-success">Descarga tu Factura</a>
+                                            
+                                           
                                         </tbody>
                                         <tfoot>
                                             <tr>

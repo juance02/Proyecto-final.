@@ -161,7 +161,7 @@ def ordenar (request, total=0, cantidad=0):
 def orden_completada (request):
     orden_numero = request.GET.get('orden_numero')
     transID = request.GET.get('pagos_id')
-
+    
     try:
         orden = Orden.objects.get(orden_numero=orden_numero,confirmacion_orden=True)
         ordenado = OrdenProducto.objects.filter(orden_id=orden.id)
@@ -183,42 +183,33 @@ def orden_completada (request):
         return render(request, 'ordenes/orden_completada.html', context)
     except (Pago.DoesNotExist, Orden.DoesNotExist):
         return redirect('inicio')
-
-
-class PDF(View):
-    
-    def get(self, request, pk, *args, **kwargs):
-            transID = request.GET.get('pagos_id')
-            #user = Cuentas.objects.filter(pk=pk)
-            orden = Orden.objects.filter(pk=pk)
-            ordenado = OrdenProducto.objects.filter(pk=pk)
-            pago = Pago.objects.filter(pk=pk)
-            subtotal = 0
-            for i in ordenado:
-                subtotal += i.precio*i.cantidad
         
-            template = get_template('ordenes/factura.html')
-            context = {
-                'orden': orden,
-                'ordenado': ordenado,
-                'subtotal':subtotal,
-                'pago': pago,
-               
-                
-                
-            }
-            
-            html = template.render(context)
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="Mi_Factura.pdf"'
-
-            pisa_status = pisa.CreatePDF(
-                html, dest=response)
+def pdf3(request, orden_numero):
+    
+    factura = Orden.objects.filter(orden_numero=orden_numero)
+    orden = Orden.objects.get(orden_numero=orden_numero,confirmacion_orden=True)
+    ordenado = OrdenProducto.objects.filter(orden_id=orden.id)
+   
+    subtotal = 0
+    for i in ordenado:
+            subtotal += i.precio*i.cantidad
+    template = get_template('ordenes/factura3.html')
+    context = {
+        'factura': factura,
+        'ordenado': ordenado,
+        'subtotal':subtotal,
+        
+        }
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Mi_Factura.pdf"'
+    
+    pisa_status = pisa.CreatePDF(
+            html, dest=response)
             # if error then show some funny view
-            if pisa_status.err:
+    if pisa_status.err:
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
-            return response
-            
+    return response
 
 
     

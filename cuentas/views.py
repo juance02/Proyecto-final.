@@ -239,10 +239,10 @@ def resetearpassword(request):
 
     return render()
 @login_required
-def perfil (request, nombres=None):
+def perfil (request, nombreusuario=None):
     current_user = request.user
-    if nombres and nombres !=current_user.nombres:
-        user = Cuentas.objects.get(nombres=nombres)
+    if nombreusuario and nombreusuario !=current_user.nombreusuario:
+        user = Cuentas.objects.get(nombreusuario=nombreusuario)
         product = user.product.all()
 
     else:
@@ -290,13 +290,13 @@ def edit_perfil(request):
     return render (request , 'perfil/edit_perfil.html' ,  context)
 
 
-def mas_informacion (request, pk):
-    user_form = Cuentas.objects.filter(pk =pk)
-    perfil_form = UserPerfil.objects.filter(pk=pk)
+def mas_informacion (request,nombreusuario):
+    user_form = Cuentas.objects.filter(nombreusuario=nombreusuario)
+    
 
     context = {
         'user_form' : user_form,
-        'perfil_form': perfil_form
+        #'perfil_form': perfil_form
     }
 
     return render (request, 'perfil/mas_informacion.html', context)

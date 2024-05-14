@@ -35,6 +35,7 @@
                                     <th > {{order.numero_telefono}} </th>
                                     <th >${{order.orden_total }} </th>
                                     <th > {{order.orden_creacion }} </th>
+                                    <th><a href="{% url 'pdf3' order.orden_numero %}" class="btn btn-success">Descarga tu Factura</a></th>
                                  </tr>
                               {% endfor %}
                            </tbody>
